@@ -1,0 +1,16 @@
+
+<div *ngFor="let b of buttons">
+
+  <ion-button *ngIf="!b.name" [ngClass]="{'badgy-button':b.badge>0}" [hidden]="b.showForced==false || b.show==false"
+    [disabled]="b.disabled || disabled" (click)="b.action($event)" [routerLink]="b.route" [color]="b.color">
+    <ion-icon slot="icon-only" [size]="b.size" [name]="b.icon">
+    </ion-icon>
+    <ion-badge *ngIf="b.badge" class="notifications-badge" color="danger">{{b.badge}}</ion-badge>
+  </ion-button>
+
+  <ion-button   *ngIf="b.name" class="texty-button" [fill]="b.fill" [hidden]="b.showForced==false || b.show==false"
+    [disabled]="b.disabled || disabled" (click)="b.action($event)" [routerLink]="b.route" [color]="b.color">
+    <ion-label [ngClass]="{'adaptive-text': b.darkmodeSensitive }">{{ b.name }}</ion-label>
+  </ion-button>
+
+</div>

@@ -1,0 +1,30 @@
+
+<!-- ToolbarContent schema -->
+<ion-toolbar mode="md" *ngIf="toolbar" class="adaptive-toolbar">
+  <ion-buttons class='fade-in-toolbar-button' [slot]="tbs.slot" *ngFor="let tbs of toolbar.buttons">
+    <ng-container *ngIf="tbs.isVisible === undefined || tbs.isVisible == true">
+      <ion-menu-button class="toolbar-btn" *ngIf="tbs.isMenu"></ion-menu-button>
+      <div *ngFor="let b of tbs.buttons">
+
+        <ion-button *ngIf="!b.name" mode="md" [ngClass]="{'badgy-button': !!b.badge && b.badge>0}" [hidden]="b.showForced==false || b.show==false"  [disabled]="b.disabled" (click)="b.action($event)" [routerLink]="b.route" [fill]="b.fill" >
+          <ion-icon slot="icon-only" class="toolbar-btn" [mode]="b.platform" [size]="b.size" [name]="b.icon"></ion-icon>
+          <ion-badge *ngIf="b.badge" class="notifications-badge" color="danger">{{b.badge}}</ion-badge>
+        </ion-button>
+
+        <ion-button *ngIf="b.name" class="texty-button" [fill]="b.fill" [hidden]="b.showForced==false || b.show==false"  [disabled]="b.disabled" (click)="b.action($event)" [routerLink]="b.route" [color]="b.color" >
+          <ion-label [ngClass]="{'adaptive-text': b.darkmodeSensitive }" >{{ b.name }}</ion-label>
+        </ion-button>
+
+      </div>
+    </ng-container>
+  </ion-buttons>
+  <ion-title class='fade-in-toolbar-title' [ngClass]="{ 'toolbar-title-centered': true }">        
+    <ion-img *ngIf="toolbar.logo.show" class='toolbar-img' [src]="toolbar.logo.toShow"></ion-img>
+    <ion-label *ngIf="toolbar.title.show &&  toolbar.title.content[0]" > {{ toolbar.title.content[0] }} </ion-label>
+    <app-frame-standard *ngIf="toolbar?.searchbar?.show">
+      <ion-searchbar mode="ios" debounce="200" (ionChange)="toolbar.searchbar.action($event.detail.value)" [placeholder]="toolbar.searchbar.toShow"></ion-searchbar>
+    </app-frame-standard>
+  </ion-title> 
+  <ion-progress-bar class="progress-bar-hidden" *ngIf="PB && PB.progress?.value" [hidden]="PB.progress.hidden" [reversed]="PB.progress.reversed"  [color]="PB.progress.color ? PB.progress.color : 'secondary'" [type]="PB.progress.type" [value]="PB.progress.value" ></ion-progress-bar>
+
+</ion-toolbar>  

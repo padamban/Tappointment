@@ -3,6 +3,11 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AccessZone } from './_shared/_schemas/all.schema';
+import { DrawerContent } from './_shared/_schemas/drawer.schema';
+import { Router } from '@angular/router';
+import { PM } from './_shared/variables/routes';
+import { ToolbarContent } from './_shared/components/toolbar/toolbar.schema';
 
 @Component({
   selector: 'app-root',
@@ -10,23 +15,99 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  public appPages = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
+
+
+  toolbar: ToolbarContent = {
+    centered: true,
+    title: {
+      show: true,
+      content: ['Tappy']
     },
-    {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
-    }
-  ];
+    logo: {
+      content: [],
+      show: false
+    },
+    buttons: [ ]
+  };
+
+  topDrawerContent: DrawerContent = {
+    size: 'small',
+    buttons: [
+      {
+        show: true,
+        zone: AccessZone.All,
+        line: 'none',
+        button: {
+          name: 'Menü',
+          icon: 'pizza',
+          action: () => {
+            this.onMenu();
+          }
+        }
+      },
+      {
+        show: true,
+        zone: AccessZone.Private,
+        line: 'none',
+        button: {
+          name: 'Kosár',
+          icon: 'cart',
+          action: () => {
+            this.onCart();
+          }
+        }
+      },
+    ]
+  };
+
+  bottomDrawerContent: DrawerContent = {
+    size: 'small',
+    buttons: [
+      {
+        show: true,
+        zone: AccessZone.Private,
+        line: 'none',
+        button: {
+          name: 'Adataim',
+          icon: 'person',
+          action: () => {
+            this.onAccount();
+          }
+        }
+      },
+      {
+        show: true,
+        zone: AccessZone.Private,
+        line: 'none',
+        button: {
+          name: 'Kijelentkezés',
+          icon: 'log-out',
+          action: () => {
+            // this.onLogout();
+          }
+        }
+      },
+      {
+        show: true,
+        zone: AccessZone.Public,
+        line: 'none',
+        button: {
+          name: 'Bejelentkezés',
+          icon: 'log-in',
+          action: () => {
+            this.onAuth();
+          }
+        }
+      },
+    ]
+  };
+
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -36,5 +117,21 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  onAuth() {
+    this.router.navigateByUrl(PM.nav(PM.R.AUTH));
+  }
+
+  onMenu() {
+    this.router.navigateByUrl(PM.nav(PM.R.MENU));
+  }
+
+  onCart() {
+    this.router.navigateByUrl(PM.nav(PM.R.CART));
+  }
+
+  onAccount() {
+    this.router.navigateByUrl(PM.nav(PM.R.ACCOUNT));
   }
 }

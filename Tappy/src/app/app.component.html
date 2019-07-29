@@ -2,22 +2,49 @@
   <ion-split-pane>
     <ion-menu type="overlay">
       <ion-header>
-        <ion-toolbar>
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
+        <app-toolbar [toolbar]="toolbar"></app-toolbar>
       </ion-header>
       <ion-content>
+
+        <!-- Drawer schema -->
         <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                {{p.title}}
+          <ion-menu-toggle [hidden]="!option.show" auto-hide="false" *ngFor="let option of topDrawerContent.buttons">
+            <ion-item [color]="option.color" [lines]="option.line" (click)="option.button.action()"
+              [routerDirection]="'root'" [routerLink]="option.button.route">
+              <ion-icon slot="start" *ngIf="option.button.iconType==='src'" [color]="option.button.color"
+                [size]="option.button.size" [src]="option.button.icon"></ion-icon>
+              <ion-icon slot="start" *ngIf="option.button.iconType === 'name' || option.button.iconType === undefined"
+                [color]="option.button.color" [size]="option.button.size" [name]="option.button.icon"></ion-icon>
+              <ion-label [color]="option.button.color">
+                {{ option.button.name }}
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+
       </ion-content>
+      <ion-footer>
+        <ion-header>
+
+          <!-- Drawer schema -->
+          <ion-list class="list-paper">
+            <ion-menu-toggle [hidden]="!option.show" auto-hide="false"
+              *ngFor="let option of bottomDrawerContent.buttons">
+              <ion-item [color]="option.color" [lines]="option.line" (click)="option.button.action()"
+                [routerDirection]="'root'" [routerLink]="option.button.route">
+                <ion-icon slot="start" *ngIf="option.button.iconType==='src'" [color]="option.button.color"
+                  [size]="option.button.size" [src]="option.button.icon"></ion-icon>
+                <ion-icon slot="start" *ngIf="option.button.iconType === 'name' || option.button.iconType === undefined"
+                  [color]="option.button.color" [size]="option.button.size" [name]="option.button.icon"></ion-icon>
+                <ion-label [color]="option.button.color">
+                  {{ option.button.name }}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+
+        </ion-header>
+      </ion-footer>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>
   </ion-split-pane>
