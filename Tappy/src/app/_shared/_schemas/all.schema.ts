@@ -9,7 +9,20 @@ export enum AccessZone {
 }
 
 
-
+export enum PropertyComponentType {
+    INPUT = 1,
+    TOGGLE = 2,
+    SELECT_ONE = 3,
+    SELECT_MULTIPLE = 4,
+    RADIO = 5,
+    JUST_LABEL = 6,
+    SLIDER = 7,
+    MONEY_UNIT = 8,
+    PICTURE = 9,
+    IMAGE = 10,
+    ADVANCED_IMAGE = 11,
+    BUTTON = 12
+}
 
 
 

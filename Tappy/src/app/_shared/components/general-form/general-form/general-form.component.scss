@@ -1,0 +1,187 @@
+
+
+.success-message {
+  text-align: center;
+}
+
+.error-message {
+  color: var(--ion-color-danger);
+  text-align: center;
+}
+.submit-btn {
+  margin-top: 20px;
+  // width: auto;
+
+}
+
+
+
+.submit-content {
+  justify-items: center;
+}
+
+.just-label {
+  margin-top: 1rem;
+  // text-align: start;
+}
+
+.indent {
+  padding-left: 0.5rem;
+}
+
+.indent-mat-toggle {
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+}
+
+.labeled-mat-slider {
+  width: 90%;
+  margin-left: 0.9rem;
+  margin-right: 0.7rem;
+}
+
+.expand {
+  width: 100%;
+}
+
+.slider{
+  padding: 0.3rem;
+}
+
+.select-component {
+  padding: 0.7rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.info {
+  color: var(--ion-color-primary)
+}
+
+
+.radio-option {
+  padding: 0.5rem;
+  padding-left: 0.9rem;
+  // width: 100%;
+}
+
+.radio-group-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.text-box {
+  width: 100%;
+}
+
+.radio-group {
+  margin-top: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.radio-component {
+  display: flex;
+  // flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+
+.select-option {
+  width: 70%;
+}
+
+.error-in-formfield {
+  font-size: 80%;
+  text-align: end;
+}
+
+.error-in-item {
+  font-size: 70%;
+  text-align: end;
+}
+
+.suffix-money {
+  font-size: 60%;
+  color: var(--ion-color-medium)
+}
+
+
+.price-field {
+  margin-left: 0.7rem;
+  padding-right: 5%;
+  width: 50%;
+}
+
+.unit-field {
+  padding-left: 5%;
+  width: 42%;
+}
+
+.unit-per {
+  color: var(--ion-color-medium);
+}
+
+.toggle-item {
+  width: 95%;
+  padding-left:0.7rem;
+}
+
+.repeat-buttons {
+  margin-top: 1rem;
+  // width: 100%;
+  // text-align: center;
+}
+
+
+.image-input {
+  width: 100%;
+  padding-left: 1.7rem;
+  padding-right: 1.7rem;
+
+}
+
+.preview {
+  width: 50%;
+  align-self: center;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+  margin-left: 25%;
+}
+
+
+.toggle-hints {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 80%;
+
+}
+.toggle-hint {
+ padding-left: 0.5rem;
+
+}
+
+// ::ng-deep .mat-form-field-underline {
+//   display: none;
+// }
+
+.advanced-image-component {
+  width: 95%;
+  margin-left: 0.9rem;
+  margin-right: 0.3rem;
+  
+  ion-button {
+    margin-left: 0px;
+  }
+}
+
+.md-icon{
+  font-family: 'Material Icons' !important;
+}
+
+

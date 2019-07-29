@@ -1,0 +1,208 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <ng-container *ngIf="formFrame.submit.slot == 'top'">
+    <ion-button *ngIf="formFrame.submit.hide != true" class="submit-btn" expand="block" type="submit"
+      [disabled]="!form.valid">{{ formFrame.submit.label }}</ion-button>
+    <ion-item *ngIf="errorMessage.length > 0 || successMessage.length > 0" lines="none" text-center>
+      <ion-text *ngIf="errorMessage.length > 0" color="danger">{{ errorMessage }}</ion-text>
+      <ion-text *ngIf="successMessage.length > 0">{{ successMessage }}</ion-text>
+    </ion-item>
+  </ng-container>
+  <ng-container *ngIf="formFrame.inputs.length != undefined">
+    <ng-container class="form-group" *ngFor="let input of formFrame.inputs">
+
+      <!-- LABEL -->
+      <ion-item *ngIf="input.component == 6" lines="none">
+        <ion-label color="tertiary" class="just-label">{{ input.label }}</ion-label>
+      </ion-item>
+      <ion-item lines="none" class="repeat-buttons" *ngIf="input.responsiveRepeat">
+        <ion-label color="tertiary" class="just-label">{{ input.mainLabel }}</ion-label>
+        <ion-button fill='clear' size='small' [disabled]="input.repeat.length > 3"
+          (click)="responsiveRepeat(+1, input)">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+        <ion-button fill='clear' size='small' [disabled]="input.repeat.length < 2"
+          (click)="responsiveRepeat(-1, input)">
+          <ion-icon name="remove"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+
+      <!-- repeatbles -->
+      <ng-container *ngFor="let repID of input.repeat; let iRep = index">
+
+        <!-- TOGGLE -->
+        <ng-container *ngIf="input.component == 2">
+          <div class="toggle-item">
+            <ion-item class="expand">
+              <ion-label color="dark"> {{ input.label }}</ion-label>
+              <mat-slide-toggle class="indent-mat-toggle" [formControlName]="input.id + repID"></mat-slide-toggle>
+            </ion-item>
+            <div class="toggle-hints">
+              <ion-label class="toggle-hint" *ngIf="iRep == 0">{{ input.hint }}</ion-label>
+              <app-form-hint class="toggle-hint" _danger="true" [form]="form" [inputID]="input.id + repID"
+                [messages]="formMessages[input.id + repID]" (_isOn)="hinter($event)"></app-form-hint>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- SLIDER -->
+        <ion-item lines="none" *ngIf="input.component == 7">
+          <ion-label position="stacked" color="dark">
+            <span>{{ input.label }}</span>
+            <ng-container *ngIf="input.slider != undefined">
+              <span class="info" *ngIf="form.value[input.id + repID] >= input.slider.min">
+                ({{ form.value[input.id + repID] }})</span>
+            </ng-container>
+          </ion-label>
+          <mat-slider class="slider" id="input.id+repID" *ngIf="input.slider != undefined"
+            [formControlName]="input.id + repID" [thumbLabel]="input.slider.thumbLabel" [min]="input.slider.min"
+            [max]="input.slider.max" [step]="input.slider.step" class="labeled-mat-slider"></mat-slider>
+        </ion-item>
+
+        <!-- RADIO GROUP -->
+        <ion-item lines="none" class="radio-component" *ngIf="input.component == 5">
+          <ion-label position="stacked" color="dark">
+            <span>{{ input.label }}</span>
+          </ion-label>
+          <mat-radio-group class="radio-group" [ngClass]="{ 'radio-group-vertical': input.radio.vertical }"
+            [formControlName]="input.id + repID">
+            <mat-radio-button *ngFor="let btn of input.radio.buttons" [checked]="input.radio.selected === btn.value"
+              class="radio-option" [value]="btn.value">{{ btn.label }}</mat-radio-button>
+          </mat-radio-group>
+        </ion-item>
+
+        <!-- TEXT FIELD -->
+        <ng-container *ngIf="input.component == 1">
+          <mat-form-field class="text-box" appearance="outline">
+            <mat-label>{{ input.label }}</mat-label>
+            <input matInput ngDefaultControl [autocomplete]="input.autocomplete ? 'on' : 'new-password'"
+              [formControlName]="input.id + repID" [type]="input.type" [placeholder]="input.placeholder"
+              [required]="input.required" />
+            <mat-error align="end">
+              <app-form-hint [form]="form" [inputID]="input.id + repID" [messages]="formMessages[input.id + repID]"
+                (_isOn)="hinter($event)"></app-form-hint>
+            </mat-error>
+            <mat-hint *ngIf="iRep == 0" align="end">{{ input.hint }}</mat-hint>
+          </mat-form-field>
+        </ng-container>
+
+        <!-- IMAGE -->
+        <ng-container *ngIf="input.component == 10">
+          <mat-form-field class="image-input">
+            <ngx-mat-file-input #imageInput (change)="onFileChange(form.value, input.id)"
+              [formControlName]="input.id + repID" accept="image/jpeg;capture=camera" [placeholder]="input.placeholder">
+            </ngx-mat-file-input>
+            <button mat-icon-button matSuffix *ngIf="!imageInput.empty"
+              (click)="imageInput.clear($event); imgSrc[input.id]=null;">
+              <mat-icon class="md-icon">clear</mat-icon>
+            </button>
+            <button mat-icon-button matSuffix>
+              <mat-icon class="md-icon" matSuffix>folder</mat-icon>
+            </button>
+            <mat-error align="end">
+              <app-form-hint [form]="form" [inputID]="input.id + repID" [messages]="formMessages[input.id + repID]"
+                (_isOn)="hinter($event)"></app-form-hint>
+            </mat-error>
+            <mat-hint *ngIf="iRep == 0" align="end">{{ input.hint }}</mat-hint>
+          </mat-form-field>
+          <img *ngIf="imgSrc[input.id]" src="{{imgSrc[input.id]}}" class="preview" [alt]="' Image preview...'">
+        </ng-container>
+
+        <!-- SELECT ONE -->
+        <ion-item lines="none" *ngIf="input.component == 3">
+          <mat-form-field class="expand select-component">
+            <mat-label> {{ input.label }}</mat-label>
+            <mat-select [formControlName]="input.id + repID">
+              <mat-option *ngIf="input.hasSelectNone">--</mat-option>
+              <mat-option *ngFor="let op of input.select.options" [value]="op.value">
+                {{ op.label }}
+              </mat-option>
+            </mat-select>
+            <mat-hint align="end">
+              <app-form-hint [form]="form" [inputID]="input.id + repID" [messages]="formMessages[input.id + repID]">
+              </app-form-hint>
+            </mat-hint>
+            <mat-hint *ngIf="iRep == 0">{{ input.hint }}</mat-hint>
+          </mat-form-field>
+        </ion-item>
+
+        <!-- SELECT MULTIPLE -->
+        <ion-item lines="none" *ngIf="input.component == 4">
+          <mat-form-field class="expand select-component">
+            <mat-select [(ngModel)]="input.default == undefined ? [] : input.default"
+              [compareWith]="compareWithForSelect" [placeholder]="input.placeholder"
+              [formControlName]="input.id + repID" [required]="input.required" multiple>
+              <mat-select-trigger>
+                {{
+                  (form.value[input.id + repID]
+                    ? form.value[input.id + repID][0]
+                      ? form.value[input.id + repID][0].label
+                      : ""
+                    : "")
+                }}
+                <ng-contaier *ngIf="form.value[input.id + repID]">
+                  <span *ngIf="form.value[input.id + repID].length > 1" class="additional-selection">
+                    (+{{ form.value[input.id + repID].length - 1 }}
+                    {{
+                        (form.value[input.id + repID].length === 2
+                          ? "other"
+                          : "others")
+                      }})
+                  </span>
+                </ng-contaier>
+              </mat-select-trigger>
+              <mat-option *ngFor="let op of input.select.options" [value]="op">
+                {{ op.label }}
+              </mat-option>
+            </mat-select>
+            <mat-hint align="end">
+              <app-form-hint [form]="form" [inputID]="input.id + repID" [messages]="formMessages[input.id + repID]">
+              </app-form-hint>
+            </mat-hint>
+            <mat-hint *ngIf="iRep == 0">{{ input.hint }}</mat-hint>
+          </mat-form-field>
+        </ion-item>
+
+        <!-- PRICE / UNIT -->
+        <ion-item lines="none" *ngIf="input.component == 8">
+          <mat-form-field class="price-field" floatLabel="never">
+            <input matInput ngDefaultControl [formControlName]="input.id + repID"
+              [placeholder]="input.placeholder" [type]="input.type" class="example-right-align" />
+            <span class="suffix-money" matSuffix>&nbsp;HUF</span>
+            <mat-error align="end">
+              <app-form-hint [form]="form" [inputID]="input.id + repID" [messages]="formMessages[input.id + repID]">
+              </app-form-hint>
+            </mat-error>
+            <mat-hint *ngIf="iRep == 0" align="end">{{ input.hint }}</mat-hint>
+          </mat-form-field>
+          <span class="unit-per"> / </span>
+          <mat-form-field class="unit-field" floatLabel="never">
+            <mat-label> {{ input.label }} </mat-label>
+            <mat-select [formControlName]="input.id2 + repID">
+              <mat-option *ngFor="let op of input.select.options" [value]="op.value">
+                {{ op.label }}
+              </mat-option>
+            </mat-select>
+            <mat-error align="end">
+              <app-form-hint [form]="form" [inputID]="input.id2 + repID" [messages]="formMessages[input.id2 + repID]">
+              </app-form-hint>
+            </mat-error>
+            <mat-hint *ngIf="iRep == 0" align="end">{{ input.hint2 }}</mat-hint>
+          </mat-form-field>
+        </ion-item>
+
+
+
+
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="formFrame.submit.slot != 'top'">
+    <ion-button *ngIf="formFrame.submit.hide != true" class="submit-btn" expand="block" type="submit"
+      [disabled]="!form.valid || disableSubmit">{{ formFrame.submit.label }}</ion-button>
+    <ion-item *ngIf="errorMessage.length > 0 || successMessage.length > 0" lines="none" text-center>
+      <ion-text *ngIf="errorMessage.length > 0" color="danger">{{ errorMessage }}</ion-text>
+      <ion-text *ngIf="successMessage.length > 0">{{ successMessage }}</ion-text>
+    </ion-item>
+  </ng-container>
+</form>

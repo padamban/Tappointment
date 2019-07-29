@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ToolbarModule } from './_shared/components/toolbar/toolbar.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const imported = [
   ToolbarModule
@@ -20,6 +20,7 @@ const imported = [
   entryComponents: [],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     ...imported
@@ -31,4 +32,4 @@ const imported = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
