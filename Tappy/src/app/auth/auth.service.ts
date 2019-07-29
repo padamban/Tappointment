@@ -13,12 +13,16 @@ import { PM } from '../_shared/variables/routes';
 })
 export class AuthService {
 
-  private isUserAuth: boolean;
+  private isUserAuth = false;
   private onUserIsAuthenticated: Subject<boolean>;
 
 
   get isUserAuthenticated() {
     return this.isUserAuth;
+  }
+
+  get onUserAutehntication() {
+    return this.onUserIsAuthenticated.asObservable();
   }
 
   constructor(
@@ -29,6 +33,21 @@ export class AuthService {
 
   ) {
     this.onUserIsAuthenticated = new Subject<boolean>();
+
+    this.afAuth.authState.subscribe(auth => {
+      if (auth) {
+        const log = {
+          additionalUserInfo: {},
+          user: auth
+        };
+        this.onLogin(log).then(
+          ok => this.router.navigateByUrl(PM.nav(PM.A.AFTER_LOGIN)),
+          nah => console.log('Log in', nah)
+        );
+      } else {
+
+      }
+    }, err => console.error('tappy-$-afAuth.authState', err));
 
   }
 
@@ -43,13 +62,13 @@ export class AuthService {
         {
           text: 'Cancel',
           role: 'cancel',
-          cssClass: 'btk-alert-button',
+          cssClass: 'tappy-alert-button',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Resend',
-          cssClass: 'btk-alert-button-highlight',
+          cssClass: 'tappy-alert-button-highlight',
           handler: () => {
             console.log('Confirm Okay', email, this.afAuth.auth.currentUser);
             this.afAuth.auth.currentUser.sendEmailVerification().then(
@@ -97,6 +116,21 @@ export class AuthService {
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(res => resolve(res), err => reject(err));
+    });
+  }
+
+  doLogout() {
+    return new Promise((resolve, reject) => {
+      this.afAuth.auth
+        .signOut()
+        .then(() => {
+          this.onLogout();
+          resolve();
+        })
+        .catch(error => {
+          console.log(error);
+          reject();
+        });
     });
   }
 

@@ -560,7 +560,7 @@ export class GeneralFormComponent implements OnInit {
       });
       this.lastFormValues = vals;
       this.diffFormValues = diffValues;
-    }, err => console.error('BTK-$-form.valueChanges', err)));
+    }, err => console.error('tappy-$-form.valueChanges', err)));
 
     this.subscritions.push(this.form.statusChanges.subscribe(val => {
       this.lastState = val;
@@ -570,7 +570,7 @@ export class GeneralFormComponent implements OnInit {
         data: this.lastFormValues,
         changed: this.diffFormValues
       });
-    }, err => console.error('BTK-$-form.statusChanges', err)));
+    }, err => console.error('tappy-$-form.statusChanges', err)));
   }
 
   onFileChange(form: FormGroup, tag: string) {
@@ -578,7 +578,7 @@ export class GeneralFormComponent implements OnInit {
     if (Utility._canUse(form[tag])) {
       Utility.readFile(form[tag].files[0] as File).subscribe(res => {
         this.imgSrc[tag] = res;
-      }, err => console.error('BTK-$-onFileChange.readFile', err));
+      }, err => console.error('tappy-$-onFileChange.readFile', err));
     }
   }
 

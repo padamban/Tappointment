@@ -8,6 +8,7 @@ import { DrawerContent } from './_shared/_schemas/drawer.schema';
 import { Router } from '@angular/router';
 import { PM } from './_shared/variables/routes';
 import { ToolbarContent } from './_shared/components/toolbar/toolbar.schema';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -83,7 +84,7 @@ export class AppComponent {
           name: 'Kijelentkezés',
           icon: 'log-out',
           action: () => {
-            // this.onLogout();
+            this.onLogout();
           }
         }
       },
@@ -109,6 +110,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router: Router,
     private rendererFactory: RendererFactory2,
+    public auth: AuthService
   ) {
     this.initializeApp();
     const renderer = rendererFactory.createRenderer(null, null);
@@ -125,6 +127,10 @@ export class AppComponent {
 
   onAuth() {
     this.router.navigateByUrl(PM.nav(PM.R.AUTH));
+  }
+
+  onLogout() {
+    this.auth.doLogout();
   }
 
   onMenu() {

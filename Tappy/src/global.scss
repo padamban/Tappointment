@@ -31,85 +31,85 @@
 :host {
      // All
 
-  // --btk-toolbar-btn: red;
+  // --tappy-toolbar-btn: red;
 
   ion-card {
-    --background: var(--btk-paper);
+    --background: var(--tappy-paper);
   }
   ion-item {
-    --background: var(--btk-paper);
+    --background: var(--tappy-paper);
     // --color-activated: red;
-    --background-hover: var(--btk-paper-tint);
+    --background-hover: var(--tappy-paper-tint);
   }
   ion-menu {
     ion-header {
       app-toolbar {
         ion-toolbar {
-          --background: var(--btk-toolbar-background-superior) !important;
+          --background: var(--tappy-toolbar-background-superior) !important;
         }
       }
     }
 
-    --background: var(--btk-paper);
+    --background: var(--tappy-paper);
     ion-content {
-      --background: var(--btk-paper);
+      --background: var(--tappy-paper);
       ion-list {
-        background: var(--btk-paper);
+        background: var(--tappy-paper);
       }
     }
     ion-footer {
       ion-list {
-        background: var(--btk-paper-shade);
+        background: var(--tappy-paper-shade);
       }
     }
   }
 
   app-option-selector {
     ion-list {
-      background: var(--btk-paper);
+      background: var(--tappy-paper);
     }
   }
 
   ion-list {
-    background: var(--btk-paper);
+    background: var(--tappy-paper);
   }
 
   .adaptive-toolbar {
-    --background: var(--btk-toolbar-background);
+    --background: var(--tappy-toolbar-background);
   }
 
   .adaptive-text {
     color: var(--ion-color-step-850);
   }
 
-  .btk-alert-button {
+  .tappy-alert-button {
     span {
       color: var(--ion-color-step-750);
     }
   }
 
-  .btk-alert-button-highlight {
+  .tappy-alert-button-highlight {
     span {
-      color: var(--btk-alert-button);
+      color: var(--tappy-alert-button);
     }
   }
 
-  .btk-alert-button-highlight {
+  .tappy-alert-button-highlight {
     span {
       color: var(--ion-color-danger-shade);
     }
   }
 
-  .btk-picker-btn {
+  .tappy-picker-btn {
     color: var(--ion-color-step-750);
   }
 
-  .btk-picker-opt {
+  .tappy-picker-opt {
     color: red;
     background: indigo;
   }
 
-  .btk-picker {
+  .tappy-picker {
     .picker-opt-selected {
       color: var(--ion-color-step-950);
     }

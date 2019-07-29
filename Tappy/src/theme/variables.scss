@@ -173,32 +173,32 @@
     --ion-color-light-shade: #d7d8da;
     --ion-color-light-tint: #f5f6f9;
 
-    --btk-paper: var(--ion-color-light);
-    --btk-paper-tint: var(--ion-color-light-tint);
-    --btk-paper-shade: var(--ion-color-light-shade);
-    --btk-md-primary: var(--ion-color-primary-shade);
-    --btk-md-danger: var(--ion-color-danger-shade);
+    --tappy-paper: var(--ion-color-light);
+    --tappy-paper-tint: var(--ion-color-light-tint);
+    --tappy-paper-shade: var(--ion-color-light-shade);
+    --tappy-md-primary: var(--ion-color-primary-shade);
+    --tappy-md-danger: var(--ion-color-danger-shade);
 
-    --btk-toolbar-btn: var(--ion-color-step-850);
-    --btk-toolbar-background: var(--ion-color-primary);
-    --btk-toolbar-background-superior: var(--ion-color-primary);
-    --btk-alert-button: #ac8900;
+    --tappy-toolbar-btn: var(--ion-color-step-850);
+    --tappy-toolbar-background: var(--ion-color-primary);
+    --tappy-toolbar-background-superior: var(--ion-color-primary);
+    --tappy-alert-button: #ac8900;
 
-    $md-btk-primary: (
-      50: var(--btk-md-primary),
-      100: var(--btk-md-primary),
-      200: var(--btk-md-primary),
-      300: var(--btk-md-primary),
-      400: var(--btk-md-primary),
-      500: var(--btk-md-primary),
-      600: var(--btk-md-primary),
-      700: var(--btk-md-primary),
-      800: var(--btk-md-primary),
-      900: var(--btk-md-primary),
-      A100: var(--btk-md-primary),
-      A200: var(--btk-md-primary),
-      A400: var(--btk-md-primary),
-      A700: var(--btk-md-primary),
+    $md-tappy-primary: (
+      50: var(--tappy-md-primary),
+      100: var(--tappy-md-primary),
+      200: var(--tappy-md-primary),
+      300: var(--tappy-md-primary),
+      400: var(--tappy-md-primary),
+      500: var(--tappy-md-primary),
+      600: var(--tappy-md-primary),
+      700: var(--tappy-md-primary),
+      800: var(--tappy-md-primary),
+      900: var(--tappy-md-primary),
+      A100: var(--tappy-md-primary),
+      A200: var(--tappy-md-primary),
+      A400: var(--tappy-md-primary),
+      A700: var(--tappy-md-primary),
       contrast: (
         50: #000000,
         100: #000000,
@@ -217,21 +217,21 @@
       )
     );
 
-    $md-btk-danger: (
-      50: var(--btk-md-danger),
-      100: var(--btk-md-danger),
-      200: var(--btk-md-danger),
-      300: var(--btk-md-danger),
-      400: var(--btk-md-danger),
-      500: var(--btk-md-danger),
-      600: var(--btk-md-danger),
-      700: var(--btk-md-danger),
-      800: var(--btk-md-danger),
-      900: var(--btk-md-danger),
-      A100: var(--btk-md-danger),
-      A200: var(--btk-md-danger),
-      A400: var(--btk-md-danger),
-      A700: var(--btk-md-danger),
+    $md-tappy-danger: (
+      50: var(--tappy-md-danger),
+      100: var(--tappy-md-danger),
+      200: var(--tappy-md-danger),
+      300: var(--tappy-md-danger),
+      400: var(--tappy-md-danger),
+      500: var(--tappy-md-danger),
+      600: var(--tappy-md-danger),
+      700: var(--tappy-md-danger),
+      800: var(--tappy-md-danger),
+      900: var(--tappy-md-danger),
+      A100: var(--tappy-md-danger),
+      A200: var(--tappy-md-danger),
+      A400: var(--tappy-md-danger),
+      A700: var(--tappy-md-danger),
       contrast: (
         50: #000000,
         100: #000000,
@@ -250,9 +250,9 @@
       )
     );
 
-    $my-app-primary: mat-palette($md-btk-primary);
-    $my-app-accent: mat-palette($md-btk-primary);
-    $my-app-warn: mat-palette($md-btk-danger);
+    $my-app-primary: mat-palette($md-tappy-primary);
+    $my-app-accent: mat-palette($md-tappy-primary);
+    $my-app-warn: mat-palette($md-tappy-danger);
     $my-app-theme: mat-light-theme(
       $my-app-primary,
       $my-app-accent,
@@ -267,85 +267,85 @@
 
  // All
 
-  // --btk-toolbar-btn: red;
+  // --tappy-toolbar-btn: red;
 
   ion-card {
-    --background: var(--btk-paper);
+    --background: var(--tappy-paper);
   }
   ion-item {
-    --background: var(--btk-paper);
+    --background: var(--tappy-paper);
     // --color-activated: red;
-    --background-hover: var(--btk-paper-tint);
+    --background-hover: var(--tappy-paper-tint);
   }
   ion-menu {
     ion-header {
       app-toolbar {
         ion-toolbar {
-          --background: var(--btk-toolbar-background-superior) !important;
+          --background: var(--tappy-toolbar-background-superior) !important;
         }
       }
     }
 
-    --background: var(--btk-paper);
+    --background: var(--tappy-paper);
     ion-content {
-      --background: var(--btk-paper);
+      --background: var(--tappy-paper);
       ion-list {
-        background: var(--btk-paper);
+        background: var(--tappy-paper);
       }
     }
     ion-footer {
       ion-list {
-        background: var(--btk-paper-shade);
+        background: var(--tappy-paper-shade);
       }
     }
   }
 
   app-option-selector {
     ion-list {
-      background: var(--btk-paper);
+      background: var(--tappy-paper);
     }
   }
 
   ion-list {
-    background: var(--btk-paper);
+    background: var(--tappy-paper);
   }
 
   .adaptive-toolbar {
-    --background: var(--btk-toolbar-background);
+    --background: var(--tappy-toolbar-background);
   }
 
   .adaptive-text {
     color: var(--ion-color-step-850);
   }
 
-  .btk-alert-button {
+  .tappy-alert-button {
     span {
       color: var(--ion-color-step-750);
     }
   }
 
-  .btk-alert-button-highlight {
+  .tappy-alert-button-highlight {
     span {
-      color: var(--btk-alert-button);
+      color: var(--tappy-alert-button);
     }
   }
 
-  .btk-alert-button-highlight {
+  .tappy-alert-button-highlight {
     span {
       color: var(--ion-color-danger-shade);
     }
   }
 
-  .btk-picker-btn {
+  .tappy-picker-btn {
     color: var(--ion-color-step-750);
   }
 
-  .btk-picker-opt {
+  .tappy-picker-opt {
     color: red;
     background: indigo;
   }
 
-  .btk-picker {
+  .tappy-picker {
     .picker-opt-selected {
       color: var(--ion-color-step-950);
     }
