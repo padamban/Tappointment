@@ -1,4 +1,3 @@
-import { NgFormSelectorWarning } from '@angular/forms';
 import { PropertyComponentType } from '../../_schemas/all.schema';
 
 

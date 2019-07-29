@@ -1,7 +1,37 @@
 <ion-header>
-  <app-toolbar></app-toolbar>
+  <app-toolbar [toolbar]="toolbar"></app-toolbar>
 </ion-header>
 
+
 <ion-content>
-auth
-</ion-content>
+    <ion-slides #slides [options]="slideOptions">
+      <ion-slide *ngFor="let card of cards; let i = index">
+        <div class="slide-content">
+          <app-frame-skinny>  
+    
+              
+            <ion-card class="slide-card">
+              <ion-card-header>
+                <ion-card-title>{{card.title }}</ion-card-title>
+                <ion-card-subtitle>{{card.subtitle }}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                <app-general-form *ngIf="card.form" [disableSubmit]="card.loading" [formFrame]="card.form" [messageState]="card.clear"></app-general-form>
+  
+              </ion-card-content>
+  
+              <ion-progress-bar class="progress" [hidden]="!card.loading" [reversed]="card.color == 'danger'" [color]="card.color" [type]="card.loading && card.color != 'success' ? 'indeterminate':'determinate'" [value]="card.color == 'success' ? 1 : 0"></ion-progress-bar>
+            </ion-card>
+   
+            <app-buttons *ngIf="card.buttons" [buttons]="card.buttons" ></app-buttons>
+  
+          </app-frame-skinny>
+  
+        </div>
+  
+      </ion-slide>
+    </ion-slides>
+  
+  
+  </ion-content>
+  

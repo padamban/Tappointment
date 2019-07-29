@@ -1,12 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { first, repeat, map } from 'rxjs/operators';
-import { FileValidator, FileInput, FileInputComponent } from 'ngx-material-file-input';
 import { Subscription, Observable, fromEvent } from 'rxjs';
 import { FormFrame, FormChangeEventData, FormInput, FormState } from '../general-form.schema';
 import { Utility } from 'src/app/_shared/util/utility';
-import { PropertyComponentType } from '../../_schemas/all.schema';
+import { PropertyComponentType } from 'src/app/_shared/_schemas/all.schema';
 
 @Component({
   selector: 'app-general-form',
@@ -15,7 +13,7 @@ import { PropertyComponentType } from '../../_schemas/all.schema';
 })
 export class GeneralFormComponent implements OnInit {
 
-  @ViewChild('imageInput') private imageInput: FileInputComponent;
+  // @ViewChild('imageInput') private imageInput: FileInputComponent;
 
   @Output() dataChange = new EventEmitter<FormChangeEventData>();
 
@@ -367,8 +365,7 @@ export class GeneralFormComponent implements OnInit {
 
 
   constructor(
-    private formBuilder: FormBuilder,
-    private translateService: TranslateService
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -418,17 +415,13 @@ export class GeneralFormComponent implements OnInit {
   }
 
 
-  translate(text: string) {
-    return Utility._canUse(text) ? this.translateService.instant(text) : null;
-  }
-
   clearImage(id: string) {
-    if (Utility._canUse(this.imageInput)) {
-      this.imageInput.clear();
-    }
-    if (Utility._canUse(this.imgSrc)) {
-      this.imgSrc[id] = null;
-    }
+    // if (Utility._canUse(this.imageInput)) {
+    //   this.imageInput.clear();
+    // }
+    // if (Utility._canUse(this.imgSrc)) {
+    //   this.imgSrc[id] = null;
+    // }
   }
 
   processFormValues(vals) {

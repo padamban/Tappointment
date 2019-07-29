@@ -24,3 +24,127 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+
+
+:host {
+     // All
+
+  // --btk-toolbar-btn: red;
+
+  ion-card {
+    --background: var(--btk-paper);
+  }
+  ion-item {
+    --background: var(--btk-paper);
+    // --color-activated: red;
+    --background-hover: var(--btk-paper-tint);
+  }
+  ion-menu {
+    ion-header {
+      app-toolbar {
+        ion-toolbar {
+          --background: var(--btk-toolbar-background-superior) !important;
+        }
+      }
+    }
+
+    --background: var(--btk-paper);
+    ion-content {
+      --background: var(--btk-paper);
+      ion-list {
+        background: var(--btk-paper);
+      }
+    }
+    ion-footer {
+      ion-list {
+        background: var(--btk-paper-shade);
+      }
+    }
+  }
+
+  app-option-selector {
+    ion-list {
+      background: var(--btk-paper);
+    }
+  }
+
+  ion-list {
+    background: var(--btk-paper);
+  }
+
+  .adaptive-toolbar {
+    --background: var(--btk-toolbar-background);
+  }
+
+  .adaptive-text {
+    color: var(--ion-color-step-850);
+  }
+
+  .btk-alert-button {
+    span {
+      color: var(--ion-color-step-750);
+    }
+  }
+
+  .btk-alert-button-highlight {
+    span {
+      color: var(--btk-alert-button);
+    }
+  }
+
+  .btk-alert-button-highlight {
+    span {
+      color: var(--ion-color-danger-shade);
+    }
+  }
+
+  .btk-picker-btn {
+    color: var(--ion-color-step-750);
+  }
+
+  .btk-picker-opt {
+    color: red;
+    background: indigo;
+  }
+
+  .btk-picker {
+    .picker-opt-selected {
+      color: var(--ion-color-step-950);
+    }
+  }
+
+  ion-popover {
+    margin: 0px;
+  }
+
+  ion-tab-button {
+    // --background: red;
+    // --background-focused: var(--ion-color-secondary);
+
+    // --color-selected: var(--ion-color-secondary);
+    // --color-hover: red;
+    // --color-selected: blue;
+
+    ion-button {
+      --border-radius: 1rem;
+      // --background: var(--ion-color-secondary);
+      // --background-activated: transparent;
+
+      ion-label {
+        padding-left: 0.5rem;
+        font-size: 110%;
+      }
+
+      // --background: indigo;
+      // --color: blue;
+    }
+  }
+
+
+  .active-tab-icon {
+    color:  black !important;
+  }
+
+}

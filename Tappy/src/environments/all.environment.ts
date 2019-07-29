@@ -1,5 +1,6 @@
 export const all = {
     version: '1.0.0',
+    regAccessKey: 'Tappointment',
     firebase: {
       apiKey: 'AIzaSyARWyOkZ_baIrnKbuM0162mWrCCOWC8Kd0',
       authDomain: 'tappy-test.firebaseapp.com',
