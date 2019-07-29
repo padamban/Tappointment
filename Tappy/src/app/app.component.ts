@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AccessZone } from './_shared/_schemas/all.schema';
-import { DrawerContent } from './_shared/_schemas/drawer.schema';
+import { DrawerContent, DrawerButton } from './_shared/_schemas/drawer.schema';
 import { Router } from '@angular/router';
 import { PM } from './_shared/variables/routes';
 import { ToolbarContent } from './_shared/components/toolbar/toolbar.schema';
@@ -104,6 +104,7 @@ export class AppComponent {
   };
 
 
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -113,8 +114,8 @@ export class AppComponent {
     public auth: AuthService
   ) {
     this.initializeApp();
-    const renderer = rendererFactory.createRenderer(null, null);
-    renderer.addClass(document.body, 'tappy-theme');
+
+  
 
   }
 
@@ -122,6 +123,12 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+    });
+    const renderer = this.rendererFactory.createRenderer(null, null);
+    renderer.addClass(document.body, 'tappy-theme');
+
+    this.auth.onUserAutehntication.subscribe( isAuth => {
+      this.updateAuthVisibility(isAuth);
     });
   }
 
@@ -144,4 +151,26 @@ export class AppComponent {
   onAccount() {
     this.router.navigateByUrl(PM.nav(PM.R.ACCOUNT));
   }
+
+
+  updateAuthVisibility(isAuth: boolean = this.auth.isUserAuthenticated) {
+
+    const update = (data: DrawerButton[]) => {
+      data.forEach(b => {
+        if (b.zone === AccessZone.Private) {
+          b.show = isAuth;
+        } else if (b.zone === AccessZone.Public) {
+          b.show = !isAuth;
+        } else if (b.zone === AccessZone.All) {
+          b.show = true;
+        }
+      });
+    };
+
+    setTimeout(() => {
+      update(this.topDrawerContent.buttons);
+      update(this.bottomDrawerContent.buttons);
+    }, 500);
+  }
+
 }
