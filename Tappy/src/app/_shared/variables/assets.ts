@@ -11,6 +11,9 @@ export const MENU_COCKTAIL = '/assets/icon/menu/.svg';
 export const MENU_WINE = '/assets/icon/menu/wine.svg';
 export const MENU_SPIRIT = '/assets/icon/menu/spirit.svg';
 
+export const MENU_VEGETARIAN = '/assets/icon/menu/broccoli.svg';
+export const MENU_SPICY = '/assets/icon/menu/chili.svg';
+
 
 export const MENU_FOOD = MENU_SANDWICH;
 export const MENU_DRINK = '/assets/icon/menu/drinks.svg';

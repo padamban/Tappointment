@@ -1,0 +1,41 @@
+
+
+ion-segment {
+    padding-top: 0px;
+    padding-bottom: 5px;
+}
+
+.filter-segment-text { 
+    text-transform: none;
+    --transition: box-shadow 0ms cubic-bezier(.4,0,.2,1),background-color 15ms linear,color 15ms linear;
+    border-radius: 0rem;
+    --padding-start:0.4em;
+    --padding-end:0.4em;
+}
+
+.filter-segment-small {
+    justify-content: start !important;
+}
+.filter-segment-mid {
+    justify-content: space-evenly !important;
+}
+.filter-segment-large {
+    justify-content: center !important;
+}
+
+.segment-button{
+    width: 80px !important;
+    min-height: 30px !important;
+    margin-top:     8px;
+    --border-radius: 1rem;
+}
+
+.filter {
+    // height: 50px;
+}
+
+.menu-filter-label {
+    color: var(--ion-color-step-950);
+}
+
+

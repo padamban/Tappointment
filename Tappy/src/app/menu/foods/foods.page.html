@@ -1,9 +1,11 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>foods</ion-title>
-  </ion-toolbar>
+  <app-menu-list-filter [filter]="filter"></app-menu-list-filter>
 </ion-header>
 
 <ion-content>
+
+  <app-frame-standard>
+    <app-menu-list [category]="currentCategory"></app-menu-list>
+  </app-frame-standard>
 
 </ion-content>

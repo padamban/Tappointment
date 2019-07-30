@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { DrinksPage } from './drinks.page';
+import { FrameModule } from 'src/app/_shared/components/frame/frame.module';
+import { MenuComponentsModule } from '../components/menu-components.module';
 
 const routes: Routes = [
   {
@@ -14,12 +16,18 @@ const routes: Routes = [
   }
 ];
 
+const imported = [
+  MenuComponentsModule,
+  FrameModule
+];
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ...imported
   ],
   declarations: [DrinksPage]
 })

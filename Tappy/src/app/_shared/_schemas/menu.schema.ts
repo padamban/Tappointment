@@ -1,10 +1,11 @@
 
 
 export enum MenuItemCategory {
-    Starter,
+    Starter = 0,
     Soup,
     MainDish,
     Pizza,
+    Dessert,
     Drink,
 }
 
@@ -24,18 +25,6 @@ export interface MenuItemDb extends Db {
 export interface MenuItem {
     db?: MenuItemDb;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

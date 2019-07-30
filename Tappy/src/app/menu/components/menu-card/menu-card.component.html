@@ -1,0 +1,26 @@
+<ion-card *ngIf="item">
+  <ion-card-header>
+    <ion-item [lines]="item.db.description ? null : 'none'">
+      <ion-card-title>
+        {{item.db.name}}
+      </ion-card-title>
+      <ion-avatar *ngIf="item.db.isSpicy">
+        <img [src]="spicyImg" />
+      </ion-avatar>
+      <ion-avatar *ngIf="item.db.isVegetarian">
+        <img [src]="vegetarianImg" />
+      </ion-avatar>
+      <ion-badge slot="end" color="light">{{item.db.price}},-</ion-badge>
+      <ion-button *ngIf="auth.isUserAuthenticated" slot="end" color="secondary" >
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+  </ion-card-header>
+  <ion-card-content *ngIf="item.db.description">
+    <ion-item lines="none">
+      <ion-label>{{item.db.description}}</ion-label>
+    </ion-item>
+  </ion-card-content>
+
+</ion-card>

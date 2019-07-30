@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItemCategory } from 'src/app/_shared/_schemas/menu.schema';
 
 @Component({
   selector: 'app-drinks',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drinks.page.scss'],
 })
 export class DrinksPage implements OnInit {
+
+  currentCategory: MenuItemCategory = MenuItemCategory.Drink;
 
   constructor() { }
 

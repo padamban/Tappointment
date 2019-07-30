@@ -1,0 +1,7 @@
+<!-- <p>
+  menu-list works!
+</p>
+<app-menu-card></app-menu-card> -->
+<ng-container *ngFor="let item of menu.items">
+  <app-menu-card *ngIf="item.db.category == category || category == null" [item]="item"></app-menu-card>
+</ng-container>

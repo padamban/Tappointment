@@ -45,7 +45,7 @@ export class MenuPage implements OnInit {
 
 
   constructor(
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {

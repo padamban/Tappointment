@@ -85,7 +85,8 @@
       "page",
       "kebab-case"
     ],
-    "triple-equals": false
+    "triple-equals": false,
+    "no-string-literal": false
 
   }
 }

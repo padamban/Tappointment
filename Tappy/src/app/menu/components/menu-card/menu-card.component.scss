@@ -1,0 +1,12 @@
+
+ion-avatar {
+    --border-radius: 0px;
+    --size: 1.2rem;
+    width: var(--size);
+    height: var(--size);
+    margin-left: 0.5rem;
+}
+
+ion-badge {
+    padding: 8px;
+}

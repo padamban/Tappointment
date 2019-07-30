@@ -8,6 +8,11 @@ export enum AccessZone {
     Public = 2
 }
 
+export enum WindowWidth {
+    SMALL = 0,
+    MID,
+    LARGE
+}
 
 export enum PropertyComponentType {
     INPUT = 1,
