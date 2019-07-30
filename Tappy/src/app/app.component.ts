@@ -115,8 +115,10 @@ export class AppComponent {
   ) {
     this.initializeApp();
 
-  
-
+    this.updateAuthVisibility(false);
+    this.auth.onUserAutehntication.subscribe( isAuth => {
+      this.updateAuthVisibility(isAuth);
+    });
   }
 
   initializeApp() {
@@ -126,10 +128,6 @@ export class AppComponent {
     });
     const renderer = this.rendererFactory.createRenderer(null, null);
     renderer.addClass(document.body, 'tappy-theme');
-
-    this.auth.onUserAutehntication.subscribe( isAuth => {
-      this.updateAuthVisibility(isAuth);
-    });
   }
 
   onAuth() {

@@ -3,5 +3,17 @@
 </ion-header>
 
 <ion-content>
-menu
+
+  <!-- Tab Content -->
+  <ion-tabs>
+    <ion-tab-bar class="fade-in-menu" slot="top">
+      <ion-tab-button class='menu-tab-button' [tab]="b.route[0]" *ngFor="let b of tabbar.tabs">
+        <ion-button [fill]="b.route[0]==currentTab ? 'solid' : 'none'">
+          <ion-icon [ngClass]="{'active-tab-icon': b.route[0]==currentTab}" *ngIf="b.iconType==='src'" [size]="b.size" [src]="b.icon"></ion-icon>
+          <ion-label>{{ b.name }}</ion-label>
+        </ion-button>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  
 </ion-content>

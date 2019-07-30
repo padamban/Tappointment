@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: PM.R.AUTH, loadChildren: './auth/auth.module#AuthPageModule' },
   { path: PM.R.MENU, loadChildren: './menu/menu.module#MenuPageModule' },
   { path: PM.R.CART, loadChildren: './cart/cart.module#CartPageModule' },
-  { path: PM.R.ACCOUNT, loadChildren: './account/account.module#AccountPageModule' }
+  { path: PM.R.ACCOUNT, loadChildren: './account/account.module#AccountPageModule' },
+
 ];
 
 @NgModule({

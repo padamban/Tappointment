@@ -5,19 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MenuPage } from './menu.page';
-import { ToolbarModule } from '../_shared/components/toolbar/toolbar.module';
-import { MenuRoutingModule } from './menu-routing.module';
+import { DrinksPage } from './drinks.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: MenuPage
+    component: DrinksPage
   }
-];
-
-const imported = [
-  ToolbarModule
 ];
 
 @NgModule({
@@ -25,9 +19,8 @@ const imported = [
     CommonModule,
     FormsModule,
     IonicModule,
-    MenuRoutingModule,
-    ...imported
+    RouterModule.forChild(routes)
   ],
-  declarations: [MenuPage]
+  declarations: [DrinksPage]
 })
-export class MenuPageModule {}
+export class DrinksPageModule {}
