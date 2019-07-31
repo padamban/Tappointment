@@ -29,5 +29,14 @@ export enum PropertyComponentType {
     BUTTON = 12
 }
 
+export interface Db {
+    id: string;
+}
+
+
+export interface DbWrapper {
+    db: Db;
+}
+
 
 

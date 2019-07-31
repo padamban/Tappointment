@@ -42,7 +42,7 @@ export class DatabaseService {
         }
       } else {
         if (matchIdx > -1) {
-          items[matchIdx]['db'] = item['db']
+          items[matchIdx]['db'] = item['db'];
           idx = matchIdx;
         } else {
           items.push(item);

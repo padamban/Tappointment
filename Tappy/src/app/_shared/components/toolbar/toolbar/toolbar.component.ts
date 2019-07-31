@@ -5,6 +5,10 @@ import { Subject, Subscription } from 'rxjs';
 import { Utility } from 'src/app/_shared/util/utility';
 import { ProgressBarManager } from 'src/app/_shared/_schemas/progress-bar.schema';
 import { AccessZone } from 'src/app/_shared/_schemas/all.schema';
+import { PM } from 'src/app/_shared/variables/routes';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
+import { CartService } from 'src/app/cart/cart.service';
 
 
 
@@ -20,10 +24,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.t = {};
     Object.assign(this.t, t);
   }
-
   get toolbar() {
     return this.t;
   }
+
+  @Input() hasCart: boolean = false;
+
 
 
 
@@ -41,7 +47,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private nav: NavController,
+    private router: Router,
+    public auth: AuthService,
+    public cart: CartService
   ) {
 
 
@@ -69,13 +77,16 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         },
       ]
     };
-
   }
 
   ngOnDestroy() {
     if (this.onThemeChanged$) {
       this.onThemeChanged$.unsubscribe();
     }
+  }
+
+  public goToCart() {
+    this.router.navigateByUrl(PM.nav(PM.R.CART));
   }
 
 

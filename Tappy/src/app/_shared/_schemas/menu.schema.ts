@@ -1,3 +1,4 @@
+import { Db } from './all.schema';
 
 
 export enum MenuItemCategory {
@@ -9,9 +10,7 @@ export enum MenuItemCategory {
     Drink,
 }
 
-export interface Db {
-    id?: string;
-}
+
 
 export interface MenuItemDb extends Db {
     category?: MenuItemCategory;
@@ -23,10 +22,17 @@ export interface MenuItemDb extends Db {
 }
 
 export interface MenuItem {
-    db?: MenuItemDb;
+    cart: number;
+    db: MenuItemDb;
 }
 
 
+export interface CartContentDb extends Db {
+    content: Map<string, number>;
+}
 
+export interface CartContent {
+    db: CartContentDb;
+}
 
 

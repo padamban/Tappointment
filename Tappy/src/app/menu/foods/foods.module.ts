@@ -6,8 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { FoodsPage } from './foods.page';
-import { MenuComponentsModule } from '../components/menu-components.module';
 import { FrameModule } from 'src/app/_shared/components/frame/frame.module';
+import { MenuComponentsModule } from 'src/app/_shared/components/menu/menu-components.module';
 
 const routes: Routes = [
   {

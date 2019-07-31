@@ -1,0 +1,9 @@
+<!-- <ion-header '> -->
+  <ion-segment scrollable class='fade-in-menu-filter'
+    [ngClass]="{'filter-segment-small': this.windowWidth===0, 'filter-segment-mid': this.windowWidth===1, 'filter-segment-large': this.windowWidth===2  }">
+    <ion-button [ngClass]="{'segment-button': true}" [color]='b.color' [fill]='b.fill' (click)='toggleFilter(b.value);'
+      size='small' class="filter-segment-text" *ngFor="let b of filter.buttons" mode="md" layout='icon-start'>
+      <ion-label>{{ b.name }}</ion-label>
+    </ion-button>
+  </ion-segment>
+<!-- </ion-header> -->

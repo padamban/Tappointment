@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicStorageModule } from '@ionic/storage';
+
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -16,9 +18,13 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
+import { AppStoreModule } from './store/store.module';
+
+
 
 const imported = [
-  ToolbarModule
+  ToolbarModule,
+  AppStoreModule
 ];
 
 @NgModule({
@@ -28,6 +34,7 @@ const imported = [
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

@@ -19,12 +19,11 @@ export class MenuCardComponent implements OnInit {
 
 
 
-
   constructor(
     public auth: AuthService,
-    public cart: CartService
+    public cart: CartService,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
 }

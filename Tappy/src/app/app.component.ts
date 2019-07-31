@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { PM } from './_shared/variables/routes';
 import { ToolbarContent } from './_shared/components/toolbar/toolbar.schema';
 import { AuthService } from './auth/auth.service';
+import { CartService } from './cart/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -50,6 +51,7 @@ export class AppComponent {
         show: true,
         zone: AccessZone.Private,
         line: 'none',
+        isWiredToCart: true,
         button: {
           name: 'Kosár',
           icon: 'cart',
@@ -111,7 +113,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router: Router,
     private rendererFactory: RendererFactory2,
-    public auth: AuthService
+    public auth: AuthService,
+    public cart: CartService
   ) {
     this.initializeApp();
 

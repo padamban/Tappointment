@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { DrinksPage } from './drinks.page';
 import { FrameModule } from 'src/app/_shared/components/frame/frame.module';
-import { MenuComponentsModule } from '../components/menu-components.module';
+import { MenuComponentsModule } from 'src/app/_shared/components/menu/menu-components.module';
 
 const routes: Routes = [
   {

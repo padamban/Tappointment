@@ -1,4 +1,4 @@
-<ion-card class="card-container" *ngIf="item">
+<ion-card [ngClass]="{'card-container': auth.isUserAuthenticated}" class="card-container2" *ngIf="item">
   <div class="card-content">
     <ion-card-header>
       <ion-item [lines]="item.db.description ? null : 'none'">
@@ -14,26 +14,15 @@
           <img [src]="vegetarianImg" />
         </ion-avatar>
         <ion-badge slot="end" color="light">{{item.db.price}},-</ion-badge>
-        <!-- <ion-button class="cart-button-add" *ngIf="auth.isUserAuthenticated" fill="none" slot="end" color="secondary"
-          (click)="cart.addToCart(item.db.id)">
-          <ion-icon slot="icon-only" name="add"></ion-icon>
-        </ion-button>
-        <ion-badge class="cart-badge" color="primary" slot="end" mode="ios">{{item.cart}}</ion-badge>
-        <ion-button class="cart-button-remove" *ngIf="auth.isUserAuthenticated" fill="none" slot="end" color="secondary"
-          (click)="cart.removeFromCart(item.db.id)">
-          <ion-icon slot="icon-only" name="remove"></ion-icon>
-        </ion-button> -->
       </ion-item>
 
     </ion-card-header>
     <ion-card-content *ngIf="item.db.description">
-      <!-- <ion-item lines="none"> -->
       <ion-label>{{item.db.description}}</ion-label>
-      <!-- </ion-item> -->
     </ion-card-content>
 
   </div>
-  <div class="card-side">
+  <div class="card-side" *ngIf="auth.isUserAuthenticated" >
     <div class="card-side-content">
 
       <ion-chip class="cart-chip" (click)="cart.addToCart(item.db.id)">

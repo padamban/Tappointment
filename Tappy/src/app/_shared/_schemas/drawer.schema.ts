@@ -8,6 +8,7 @@ export interface DrawerButton {
     line?: string;
     show?: boolean;
     color?: string;
+    isWiredToCart?: boolean;
     id?: string;
 }
 

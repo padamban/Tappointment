@@ -22,7 +22,6 @@ ion-badge {
     margin: 0px;
     margin-top: 0.3rem;
     margin-left: 1rem;
-
     font-size: 70%;
   }
 }
@@ -39,10 +38,7 @@ ion-badge {
   margin-left: 0px;
 }
 
-.card-content {
-  // width: 85fr;
-  float: left;
-}
+
 .card-side {
   box-shadow: inset 0px 0px 4px 0px #00000029;
   border-radius: 1rem;
@@ -61,6 +57,10 @@ ion-card-header {
 .card-container {
   display: grid;
   grid-template-columns: 1fr 2rem;
+
+  .card-content {
+    float: left;
+  }
 }
 
 .cart-chip {

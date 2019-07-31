@@ -41,6 +41,8 @@ export class MenuPage implements OnInit {
     ]
   };
 
+  hasCart: boolean = true;
+
   public currentTab: string;
 
 

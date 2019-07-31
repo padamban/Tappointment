@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MenuFilter } from '../components/menu-list-filter/menu-list-filter.component';
 import { MenuService } from '../menu.service';
-import { MenuItemCategory, MenuSlideContent } from 'src/app/_shared/_schemas/menu.schema';
+import { MenuItemCategory } from 'src/app/_shared/_schemas/menu.schema';
 import { IonSlides } from '@ionic/angular';
+import { ToolbarContent } from 'src/app/_shared/components/toolbar/toolbar.schema';
 
 
 
@@ -12,10 +13,7 @@ import { IonSlides } from '@ionic/angular';
   templateUrl: './foods.page.html',
   styleUrls: ['./foods.page.scss'],
 })
-export class FoodsPage implements OnInit, AfterViewInit {
-
-  // @ViewChild('slides', { static: true }) slides: IonSlides;
-
+export class FoodsPage {
 
   public filter: MenuFilter = {
     default: 0,
@@ -79,7 +77,7 @@ export class FoodsPage implements OnInit, AfterViewInit {
     initialSlide: 0,
     speed: 400,
     autoHeight: true,
-    
+
   };
 
   slideIdx: number;
@@ -89,41 +87,11 @@ export class FoodsPage implements OnInit, AfterViewInit {
 
   constructor(
     public menu: MenuService
-  ) {
-
-    
-  }
-
-  ngOnInit() {
-  }
+  ) { }
 
 
   selectFilter(category?: MenuItemCategory) {
-    console.log("Filter", category);
     this.currentCategory = category;
-    // this.goSlide(category);
-  }
-
-  ngAfterViewInit() {
-    // this.slides.ionSlideTransitionEnd.subscribe(e => {
-    //   this.slides.getActiveIndex().then(id => {
-    //     this.slideIdx = id;
-    //   });
-    // });
-  }
-
-
-  ionViewWillEnter() {
-    // this.slides.lockSwipes(true);
-    // this.cards.forEach((card, i) => {
-    //   this.submitProgress(i, false, 'primary', true);
-    // });
-  }
-
-  goSlide(idx: number) {
-    // this.slides.lockSwipes(false);
-    // this.slides.slideTo(idx).then(() => this.slideIdx = idx);
-    // this.slides.lockSwipes(true);
   }
 
 }
