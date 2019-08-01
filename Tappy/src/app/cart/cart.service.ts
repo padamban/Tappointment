@@ -69,8 +69,10 @@ export class CartService {
         this.cartContent.db.content.set(id, 1);
       }
       this.updateCart();
-      this.fakeBug();
     }
+
+    return this.fakeBug();
+
 
   }
 
@@ -167,7 +169,7 @@ export class CartService {
   fakeBug() {
     if (this.bill == 1e4) {
       try {
-        throw new Error('TAPPY - Fake bug. (bill is 10e Ft)');
+        return new Error('TAPPY - Fake bug.');
       } catch (e) {
         console.log(e);
       }

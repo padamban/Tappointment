@@ -44,8 +44,9 @@ export class AuthService {
   ) {
     this.onUserIsAuthenticated = new BehaviorSubject<boolean>(this.isUserAuth);
 
-    
     this.afAuth.authState.subscribe(auth => {
+      console.log("afAuth", this.afAuth, auth);
+      
       if (auth) {
         const log = {
           additionalUserInfo: {},
@@ -173,8 +174,8 @@ export class AuthService {
         if (Utility._canUse(newData.user)) {
           if (newData.user.emailVerified) {
             this.isUserAuth = true;
-            this.currentUserEmail = this.afAuth.auth.currentUser.email;
-            this.currentUserId = this.afAuth.auth.currentUser.uid;
+            this.currentUserEmail = newData.user.email;
+            this.currentUserId = newData.user.uid;
             this.onUserIsAuthenticated.next(this.isUserAuth);
             resolve('Verified');
           } else {
