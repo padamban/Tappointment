@@ -7,10 +7,10 @@ import { IonicModule } from '@ionic/angular';
 
 import { CartPage } from './cart.page';
 import { ToolbarModule } from '../_shared/components/toolbar/toolbar.module';
-import { MenuComponentsModule } from '../_shared/components/menu/menu-components.module';
 import { FrameModule } from '../_shared/components/frame/frame.module';
 import { CartSubmitComponent } from './cart-submit/cart-submit.component';
 import { GeneralFormModule } from '../_shared/components/general-form/general-form.module';
+import { MenuComponentsModule } from '../_shared/components/menu/menu-components.module';
 
 const routes: Routes = [
   {

@@ -31,7 +31,7 @@ export class MenuListFilterComponent implements OnInit {
 
   private bps: number[] = [330, 350, 500];
   private screenWidthValue = null;
-  private windowWidth = WindowWidth.LARGE;
+  public windowWidth = WindowWidth.LARGE;
 
 
   constructor(

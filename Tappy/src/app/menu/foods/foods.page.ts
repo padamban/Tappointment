@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MenuFilter } from '../components/menu-list-filter/menu-list-filter.component';
 import { MenuService } from '../menu.service';
 import { MenuItemCategory } from 'src/app/_shared/_schemas/menu.schema';
 import { IonSlides } from '@ionic/angular';
 import { ToolbarContent } from 'src/app/_shared/components/toolbar/toolbar.schema';
+import { MenuFilter } from 'src/app/_shared/components/menu/menu-list-filter/menu-list-filter.component';
 
 
 

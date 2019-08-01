@@ -148,10 +148,10 @@ export const DATA: MenuItemDb[] = [
     {
         id: '17',
         name: 'Somlói galuska',
-        description: 'Sonkával, pikáns szalámival, füstölt kolbásszal',
+        description: '',
         category: MenuItemCategory.Dessert,
         price: 2000,
-        isSpicy: true,
+        isSpicy: false,
         isVegetarian: false
     },
     {

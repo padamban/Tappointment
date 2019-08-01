@@ -7,7 +7,6 @@
     <div class="order-card" *ngIf="cart.bill">
       <ion-card color="danger" class="bill">
         <ion-item button (click)="clear()" color="danger" detail="false">
-          <!-- <ion-icon name="trash"></ion-icon> -->
           <ion-label>Törlés</ion-label>
         </ion-item>
       </ion-card>
@@ -15,15 +14,8 @@
         <ion-item button (click)="onOrder()" color="secondary">
           <ion-label slot="start" >Rendelés</ion-label>
           <ion-card-title slot="end">{{cart.bill}},-</ion-card-title>
-
-          <!-- <ion-button slot="end" fill="clear" color="light">
-            Megrendelem
-          </ion-button> -->
         </ion-item>
       </ion-card>
-
-
-
     </div>
 
 
