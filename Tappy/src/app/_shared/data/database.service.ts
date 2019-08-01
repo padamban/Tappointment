@@ -58,7 +58,11 @@ export class DatabaseService {
         return !Utility._canUse(snap.data()) ? {} : {
           id: snap.data().id,
           userId: snap.data().userId,
-          content: snap.data().content
+          content: snap.data().content,
+          email: snap.data().email,
+          name: snap.data().name,
+          phone: snap.data().phone,
+          price: snap.data().price
         } as OrderDb;
       }
     );

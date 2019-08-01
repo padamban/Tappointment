@@ -61,7 +61,6 @@ export class PlatformService {
 
   onResize() {
     if (this.check()) {
-      console.log('resize', this.state);
       this.resizeSubject.next(this.state);
     }
   }

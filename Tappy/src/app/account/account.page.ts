@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { DatabaseService } from '../_shared/data/database.service';
 import { ToastService } from '../_shared/services/toast.service';
+import { CartService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-account',
@@ -12,7 +13,8 @@ export class AccountPage implements OnInit {
 
   constructor(
     private db: DatabaseService,
-    private toast: ToastService
+    private toast: ToastService,
+    public cart: CartService
   ) { }
 
   ngOnInit() {
@@ -31,17 +33,22 @@ export class AccountPage implements OnInit {
     };
 
     const promises = [];
-    this.db.getLocalMenuData().forEach( item => {
+    this.db.getLocalMenuData().forEach(item => {
       promises.push(this.db.menuManager.uploadItem(item.id, item));
     });
     Promise.all(promises).then(
       ok => {
-        toastMsg('Menu uploaded to firebase.');
+        toastMsg('Menü feltöltve');
       },
       nah => {
-        toastMsg('Failed to upload menu to firebase.');
+        toastMsg('Nem sikerült feltölteni.');
       },
     );
+  }
+
+
+  maxOrderBill(e) {
+    this.cart.billLimit = e * 1e3;
   }
 
 }

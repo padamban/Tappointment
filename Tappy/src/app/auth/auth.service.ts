@@ -5,7 +5,7 @@ import { ToastService } from '../_shared/services/toast.service';
 import { AlertController } from '@ionic/angular';
 import * as firebase from 'firebase/app';
 import { Utility } from '../_shared/util/utility';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { PM } from '../_shared/variables/routes';
 
 @Injectable({
@@ -14,7 +14,7 @@ import { PM } from '../_shared/variables/routes';
 export class AuthService {
 
   private isUserAuth = false;
-  private onUserIsAuthenticated: Subject<boolean>;
+  private onUserIsAuthenticated: BehaviorSubject<boolean>;
   private currentUserEmail = '';
   private currentUserId = '';
 
@@ -42,7 +42,7 @@ export class AuthService {
     private alertController: AlertController
 
   ) {
-    this.onUserIsAuthenticated = new Subject<boolean>();
+    this.onUserIsAuthenticated = new BehaviorSubject<boolean>(this.isUserAuth);
 
     
     this.afAuth.authState.subscribe(auth => {

@@ -384,6 +384,11 @@
     color:  black !important;
   }
 
+  ion-toast {
+    --background: var(--ion-color-dark);
+    --color: var(--ion-color-dark-contrast);
+  }
+
 
 
 

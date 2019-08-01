@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ToolbarContent } from '../_shared/components/toolbar/toolbar.schema';
+import { OrderService } from './order.service';
+import { MenuService } from '../menu/menu.service';
+import { DatabaseService } from '../_shared/data/database.service';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.page.html',
   styleUrls: ['./order.page.scss'],
 })
-export class OrderPage implements OnInit {
+export class OrderPage implements OnInit, OnDestroy {
 
   public toolbar: ToolbarContent = {
     centered: true,
@@ -28,9 +31,15 @@ export class OrderPage implements OnInit {
     ]
   };
 
-  constructor() { }
+  constructor(
+    public order: OrderService,
+    public menu: MenuService,
 
-  ngOnInit() {
-  }
+  ) { }
+
+  ngOnInit() { }
+
+  ngOnDestroy() { }
+
 
 }

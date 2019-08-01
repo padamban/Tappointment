@@ -40,9 +40,17 @@ export interface OrderDb extends Db {
     email?: string;
     name?: string;
     phone?: string;
+    price?: number;
     content?: {};
 
 
 }
+
+export interface OrderItem {
+    db?: OrderDb;
+    content?: Map<string, MenuItem>;
+    canDelete?: boolean;
+}
+
 
 

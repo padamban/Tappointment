@@ -3,5 +3,36 @@
 </ion-header>
 
 <ion-content>
+  <ion-card *ngFor="let ord of order.orders">
+    <ion-card-header>
+      <ion-item>
+        <ion-card-title mode='ios'>{{ord.db.name | titlecase}}</ion-card-title>
+        <ion-button *ngIf="ord.canDelete" fill='clear' color='danger' slot="end" (click)="order.deleteOrder(ord.db.id)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+      </ion-item>
 
+      <ion-item lines="none">
+        <ion-icon name="call" slot="start"></ion-icon>
+        <ion-label>{{ord.db.phone}}</ion-label>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-icon name="mail" slot="start"></ion-icon>
+        <ion-label>{{ord.db.email}}</ion-label>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-icon name="cash" slot="start"></ion-icon>
+        <ion-label>{{ord.db.price}} Ft</ion-label>
+      </ion-item>
+
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item lines="none" *ngFor="let c of ord.content | keyvalue">
+        <ion-chip color="secondary" mode="ios">{{c.value.cart}}</ion-chip>
+        <ion-label>{{c.value.db.name}}</ion-label>
+      </ion-item>
+    </ion-card-content>
+
+  </ion-card>
 </ion-content>

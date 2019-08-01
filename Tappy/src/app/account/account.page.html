@@ -3,7 +3,32 @@
 </ion-header>
 
 <ion-content>
-<ion-button (click)="updateMenu()">
-  Update Firestore - Menu
-</ion-button>
+
+  <app-frame-skinny>
+    <ion-button expand="block" color="light" (click)="updateMenu()">
+      Menü feltöltése a firestore-ba
+    </ion-button>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Beállítások</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list-header>
+          <ion-label>Max rendelhető összeg:
+            <ion-chip color="secondary" mode="ios" outline="true">
+              <ion-label>{{cart.billLimit}} Ft</ion-label>
+            </ion-chip> 
+          </ion-label>
+        </ion-list-header>  
+        <ion-item>
+              <ion-range min="4" max="30"  step="2" debounce="100" pin="true" [value]="cart.billLimit / 1e3" (ionChange)="maxOrderBill($event.detail.value)"  color="secondary">
+                <ion-label slot="start">0 Ft</ion-label>
+                <ion-label slot="end">30e Ft</ion-label>
+              </ion-range>
+            </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+  </app-frame-skinny>
 </ion-content>

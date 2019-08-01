@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { AccountPage } from './account.page';
 import { ToolbarModule } from '../_shared/components/toolbar/toolbar.module';
+import { FrameModule } from '../_shared/components/frame/frame.module';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
 ];
 
 const imported = [
-  ToolbarModule
+  ToolbarModule,
+  FrameModule
 ];
 
 @NgModule({
