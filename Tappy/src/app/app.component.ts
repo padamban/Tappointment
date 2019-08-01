@@ -60,6 +60,18 @@ export class AppComponent {
           }
         }
       },
+      {
+        show: true,
+        zone: AccessZone.Private,
+        line: 'none',
+        button: {
+          name: 'Rendelések',
+          icon: 'clock',
+          action: () => {
+            this.onOrders();
+          }
+        }
+      },
     ]
   };
 
@@ -151,6 +163,10 @@ export class AppComponent {
 
   onAccount() {
     this.router.navigateByUrl(PM.nav(PM.R.ACCOUNT));
+  }
+
+  onOrders() {
+    this.router.navigateByUrl(PM.nav(PM.R.ORDER));
   }
 
 

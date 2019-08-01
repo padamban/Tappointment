@@ -30,12 +30,12 @@ export enum PropertyComponentType {
 }
 
 export interface Db {
-    id: string;
+    id?: string;
 }
 
 
 export interface DbWrapper {
-    db: Db;
+    db?: Db;
 }
 
 

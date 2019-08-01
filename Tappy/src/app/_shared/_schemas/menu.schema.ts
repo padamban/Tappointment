@@ -1,4 +1,4 @@
-import { Db } from './all.schema';
+import { Db, DbWrapper } from './all.schema';
 
 
 export enum MenuItemCategory {
@@ -21,18 +21,28 @@ export interface MenuItemDb extends Db {
     isVegetarian?: boolean;
 }
 
-export interface MenuItem {
-    cart: number;
-    db: MenuItemDb;
+export interface MenuItem extends DbWrapper {
+    cart?: number;
+    db?: MenuItemDb;
 }
 
 
 export interface CartContentDb extends Db {
-    content: Map<string, number>;
+    content?: Map<string, number>;
 }
 
 export interface CartContent {
     db: CartContentDb;
+}
+
+export interface OrderDb extends Db {
+    userId?: string;
+    email?: string;
+    name?: string;
+    phone?: string;
+    content?: {};
+
+
 }
 
 

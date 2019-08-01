@@ -15,15 +15,25 @@ export class AuthService {
 
   private isUserAuth = false;
   private onUserIsAuthenticated: Subject<boolean>;
+  private currentUserEmail = '';
+  private currentUserId = '';
 
 
   get isUserAuthenticated() {
     return this.isUserAuth;
   }
 
+  get currentEmail() {
+    return this.currentUserEmail;
+  }
+  get currentId() {
+    return this.currentUserId;
+  }
+
   get onUserAutehntication() {
     return this.onUserIsAuthenticated.asObservable();
   }
+
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -34,6 +44,7 @@ export class AuthService {
   ) {
     this.onUserIsAuthenticated = new Subject<boolean>();
 
+    
     this.afAuth.authState.subscribe(auth => {
       if (auth) {
         const log = {
@@ -162,6 +173,8 @@ export class AuthService {
         if (Utility._canUse(newData.user)) {
           if (newData.user.emailVerified) {
             this.isUserAuth = true;
+            this.currentUserEmail = this.afAuth.auth.currentUser.email;
+            this.currentUserId = this.afAuth.auth.currentUser.uid;
             this.onUserIsAuthenticated.next(this.isUserAuth);
             resolve('Verified');
           } else {

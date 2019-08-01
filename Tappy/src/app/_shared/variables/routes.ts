@@ -5,7 +5,9 @@ const ROOT_PATH = {
     ACCOUNT: 'account',
     CART: 'cart',
     DRINK: 'drinks',
-    FOOD: 'foods'
+    FOOD: 'foods',
+    ORDER: 'orders',
+
 };
 
 const ACTION_PATH = {

@@ -65,4 +65,24 @@ export class Utility {
         return isMatch;
     }
 
+    public static _mapToObj<V>(inputMap: Map<string, V>): {} {
+        const obj = {};
+
+        inputMap.forEach((value, key) => {
+            obj[key] = value;
+        });
+
+        return obj;
+    }
+
+    public static _objToMap<V>(inputObj: object): Map<string, V> {
+        const mp = new Map<string, V>();
+
+        Object.keys(inputObj).forEach((key) => {
+            mp.set(key, inputObj[key]);
+        });
+
+        return mp;
+    }
+
 }

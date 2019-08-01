@@ -4,6 +4,7 @@ import { MENU_FOOD, MENU_DRINK } from '../_shared/variables/assets';
 import { PM } from '../_shared/variables/routes';
 import { UrlSegmentGroup, PRIMARY_OUTLET, UrlSegment, Router } from '@angular/router';
 import { debounceTime } from 'rxjs/operators';
+import { ToolbarContent } from '../_shared/components/toolbar/toolbar.schema';
 
 
 export interface TabsContent {
@@ -17,6 +18,24 @@ export interface TabsContent {
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+
+
+  public toolbar: ToolbarContent = {
+    centered: true,
+    title: {
+      show: true,
+      content: ['Étlap']
+    },
+    logo: { },
+    buttons: [
+      {
+        slot: 'start',
+        isMenu: true,
+        color: 'dark',
+        animate: false,
+      },
+    ]
+  };
 
 
   tabbar: TabsContent = {

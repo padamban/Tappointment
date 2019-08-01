@@ -5,6 +5,9 @@ import { MenuService } from '../menu/menu.service';
 import { ToolbarContent } from '../_shared/components/toolbar/toolbar.schema';
 import { Router } from '@angular/router';
 import { PM } from '../_shared/variables/routes';
+import { AlertController, ModalController } from '@ionic/angular';
+import { OrderService } from '../order/order.service';
+import { CartSubmitComponent } from './cart-submit/cart-submit.component';
 
 @Component({
   selector: 'app-cart',
@@ -12,6 +15,7 @@ import { PM } from '../_shared/variables/routes';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
+
 
 
   public toolbar: ToolbarContent = {
@@ -34,11 +38,15 @@ export class CartPage implements OnInit {
     ]
   };
 
-
   constructor(
     public cart: CartService,
+    public auth: AuthService,
     public menu: MenuService,
-    private router: Router
+    private router: Router,
+    private alert: AlertController,
+    private order: OrderService,
+    public modalController: ModalController
+
   ) { }
 
   ngOnInit() {
@@ -48,8 +56,49 @@ export class CartPage implements OnInit {
     this.router.navigateByUrl(PM.nav(PM.R.MENU));
   }
 
-  order() {
+  onOrder() {
     console.log('order');
+    this.presentOrderForm();
+  }
+
+
+  async presentOrderForm() {
+    const modal = await this.modalController.create({
+      component: CartSubmitComponent,
+      componentProps: {
+        modal: this.modalController,
+        email: this.auth.currentEmail
+      },
+    });
+
+    await modal.present();
+
+  }
+
+
+  async clear() {
+    console.log('clear');
+    const alert = await this.alert.create({
+      header: 'Kosár ürítése ',
+      message: 'Biztos ki akarod üríteni a kosarad?',
+      buttons: [
+        {
+          text: 'Mégse',
+          role: 'cancel',
+          cssClass: 'tappy-alert-button',
+          handler: (blah) => { }
+        }, {
+          text: 'Ürítés',
+          cssClass: 'tappy-alert-button-highlight',
+          handler: () => {
+            this.cart.clearCart();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
   }
 
 }

@@ -18,13 +18,11 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
-import { AppStoreModule } from './store/store.module';
 
 
 
 const imported = [
-  ToolbarModule,
-  AppStoreModule
+  ToolbarModule
 ];
 
 @NgModule({

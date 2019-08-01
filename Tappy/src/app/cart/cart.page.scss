@@ -1,6 +1,7 @@
 
 .bill {
     border-radius: 1rem;
+    margin: 0px;
     // --background: var(--ion-color-secondary);
 }
 
@@ -9,3 +10,8 @@
     text-align: center;
 }
 
+.order-card {
+    display: grid;
+    grid-template-columns: 5.0rem 1fr;
+    grid-column-gap: 10px;
+}

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { DATA } from './data';
-import { MenuItemDb } from '../_schemas/menu.schema';
+import { MenuItemDb, MenuItem, OrderDb } from '../_schemas/menu.schema';
+import { DatabaseManager } from './database.manager';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Utility } from '../util/utility';
 
 
 
@@ -9,12 +12,62 @@ import { MenuItemDb } from '../_schemas/menu.schema';
 })
 export class DatabaseService {
 
-  constructor() { }
+
+  menuManager: DatabaseManager<MenuItemDb>;
+  orderManager: DatabaseManager<OrderDb>;
+
+  constructor(
+    private afStore: AngularFirestore
+  ) {
+    this.menuManager = this.createMenuManager();
+    this.orderManager = this.createOrderManager();
+
+  }
+
+
+  private createMenuManager() {
+    return new DatabaseManager<MenuItemDb>(
+      'MENU',
+      this.afStore,
+      null,
+      raw => {
+        return raw;
+      },
+      snap => {
+        return !Utility._canUse(snap.data()) ? {} : {
+          id: snap.data().id,
+          name: snap.data().name,
+          description: snap.data().description,
+          category: snap.data().category,
+          price: snap.data().price,
+          isSpicy: snap.data().isSpicy,
+          isVegetarian: snap.data().isVegetarian
+        } as MenuItemDb;
+      }
+    );
+  }
+  private createOrderManager() {
+    return new DatabaseManager<OrderDb>(
+      'ORDER',
+      this.afStore,
+      null,
+      raw => {
+        return raw;
+      },
+      snap => {
+        return !Utility._canUse(snap.data()) ? {} : {
+          id: snap.data().id,
+          userId: snap.data().userId,
+          content: snap.data().content
+        } as OrderDb;
+      }
+    );
+  }
 
   /**
    * Gets the data saved in a js object within the project.
    */
-  getLocalData() {
+  getLocalMenuData() {
     const data: MenuItemDb[] = [];
     DATA.forEach(item => {
       data.push({ ...item });

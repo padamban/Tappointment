@@ -11,11 +11,11 @@ const components = [
 ];
 
 @NgModule({
-  declarations: components,
-  exports: components,
   imports: [
     CommonModule,
   ],
+  declarations: components,
+  exports: components,
   entryComponents: components,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

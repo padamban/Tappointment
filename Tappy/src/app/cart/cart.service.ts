@@ -4,6 +4,9 @@ import { stringify } from '@angular/compiler/src/util';
 import { BehaviorSubject } from 'rxjs';
 import { MenuService } from '../menu/menu.service';
 import { ToastService } from '../_shared/services/toast.service';
+import { DatabaseService } from '../_shared/data/database.service';
+import { AuthService } from '../auth/auth.service';
+import { Utility } from '../_shared/util/utility';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +23,11 @@ export class CartService {
 
   constructor(
     private menu: MenuService,
-    private toast: ToastService
-  ) {
+    private toast: ToastService,
+    private db: DatabaseService,
+    private auth: AuthService
+
+   ) {
     this.cartContent = {
       db: {
         id: null,
@@ -49,7 +55,6 @@ export class CartService {
         this.cartContent.db.content.set(id, 1);
       }
       this.updateCart();
-      this.onCartContenChanges.next(this.cartContent);
     }
 
   }
@@ -62,7 +67,11 @@ export class CartService {
       this.cartContent.db.content.delete(id);
     }
     this.updateCart();
-    this.onCartContenChanges.next(this.cartContent);
+  }
+
+  clearCart() {
+    this.cartContent.db.content.clear();
+    this.updateCart();
   }
 
 
@@ -76,7 +85,32 @@ export class CartService {
 
   }
 
-  submitCart() {
+  async submitCart(name = '', email='', phone='') {
+
+    const toastMsg = (msg: string) => {
+      this.toast.presentToast({
+        duration: 8000,
+        message: msg,
+        close: true,
+        buttons: []
+      }, 'update_firebase_menu');
+    };
+
+    return this.db.orderManager.addItem({
+      content: Utility._mapToObj<number>(this.cartContent.db.content as Map<string, number>),
+      email, phone, name,
+      userId: this.auth.currentId
+    }).promise.then(
+      ok => {
+        toastMsg('Rendelés feladva.');
+        this.clearCart();
+      },
+      nah => {
+        toastMsg('Nem sikerült feladni.');
+        console.log('orderManager.addItem nah', nah);
+
+      },
+    );
 
   }
 
@@ -107,7 +141,7 @@ export class CartService {
     let passedLimit = false;
     const match = this.menu.items.find(item => item.db.id == id);
     if (match) {
-      if ( (match.db.price + this.bill) > 20000 ) {
+      if ((match.db.price + this.bill) > 20000) {
         passedLimit = true;
       }
     }
@@ -119,6 +153,7 @@ export class CartService {
     this.updateCounter();
     this.updateCartAmounts();
     this.calculateBill();
+    this.onCartContenChanges.next(this.cartContent);
   }
 
 
