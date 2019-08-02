@@ -2,6 +2,8 @@
 
 https://tappy-test.firebaseapp.com/
 
+A regisztrációnál az access code: Tappointment
+
 ## Amit használtam
 
 * Ionic4 - Angular8
