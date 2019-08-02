@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, SecurityContext } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { first, repeat, map } from 'rxjs/operators';
 import { Subscription, Observable, fromEvent } from 'rxjs';
 import { FormFrame, FormChangeEventData, FormInput, FormState } from '../general-form.schema';
 import { Utility } from 'src/app/_shared/util/utility';
 import { PropertyComponentType } from 'src/app/_shared/_schemas/all.schema';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-general-form',
@@ -365,7 +366,8 @@ export class GeneralFormComponent implements OnInit {
 
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -442,6 +444,11 @@ export class GeneralFormComponent implements OnInit {
   onSubmit() {
 
     const values = this.form.value;
+
+    Object.keys(values).forEach( k => {
+      values[k] = this.sanitizer.sanitize(SecurityContext.NONE, values[k]);
+    });
+
 
     // values = this.processFormValues(values);
     const onSuccess = (v) => {

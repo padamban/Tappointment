@@ -168,11 +168,8 @@ export class CartService {
 
   fakeBug() {
     if (this.bill == 1e4) {
-      try {
-        return new Error('TAPPY - Fake bug.');
-      } catch (e) {
-        console.log(e);
-      }
+      console.error('FAKE ERROR');
+      return new Error('TAPPY - Fake bug.');
     }
   }
 

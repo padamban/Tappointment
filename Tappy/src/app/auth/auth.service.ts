@@ -45,7 +45,6 @@ export class AuthService {
     this.onUserIsAuthenticated = new BehaviorSubject<boolean>(this.isUserAuth);
 
     this.afAuth.authState.subscribe(auth => {
-      console.log("afAuth", this.afAuth, auth);
       
       if (auth) {
         const log = {
