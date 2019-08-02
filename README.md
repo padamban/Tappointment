@@ -1,6 +1,6 @@
 # Bánkuti Péter Ádám - Tappointment teszt feladat
 
-https://tappy-test.firebaseapp.com/menu/foods
+https://tappy-test.firebaseapp.com/
 
 ## Amit használtam
 
