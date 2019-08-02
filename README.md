@@ -1,9 +1,30 @@
 # Bánkuti Péter Ádám - Tappointment teszt feladat
 
-## Rész feladatok
+https://tappy-test.firebaseapp.com/menu/foods
+
+## Amit használtam
+
+* Ionic4 - Angular8
+* Firebase - auth, store, host
+
+## Setup
+(Szerintem csak ennyi fog kelleni.)
+ 
+```
+npm i
+
+ionic serve
+
+ng test
+
+ionic build --prod
+```
+
+## Részfeladatok
 
 - [x] A weblapon egy e­mail cím / jelszó megadásával lehessen regisztrálni
-    * Firebase authentication services.
+    * Firebase authentication.
+    * Emlékszik a bejelentkezett felhasználóra.
 
 - [x] A weblap főoldalán megjelennek a kategóriák. A kategóriát kiválasztva listázódnak a tételek.
     * Az étlap tartalma a data.ts fájlban található. 
@@ -58,7 +79,7 @@
     * DomSanitizer használata a form inputoknál.
 
 - [x] megfelelő jelszó policy
-    * legyen min 6 karakter validator szerintem most elég
+    * min 6 karakter validator szerintem most elég
 
 - [ ] konfiguráció, stb (???)
 
